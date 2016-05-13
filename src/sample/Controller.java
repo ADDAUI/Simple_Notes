@@ -21,6 +21,7 @@ public class Controller implements Initializable {
 
     //LogID and sample.Log class are used only for logging purposes.
     private static final String logID = "Dev_ADDAUI";
+
     //Defining Gui Elements
     @FXML
     AnchorPane mainPanel;
@@ -41,12 +42,11 @@ public class Controller implements Initializable {
     @FXML Label time_updated;
     @FXML AnchorPane note_panel;
     @FXML HBox notification_panel;
+
     //notesList are the note list.
     private NotesList notesList = new NotesList();
     private TreeItem<Note> rootItem = new TreeItem<>(new Note("Quick Notes", ""));
-    //xLoc, yLoc are used to drag the window.
-    private double xLoc = 0;
-    private double yLoc = 0;
+
     //animation
     private FadeTransition fadeIn = new FadeTransition(new Duration(2000));
 

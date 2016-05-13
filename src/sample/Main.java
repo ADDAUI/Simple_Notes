@@ -1,11 +1,9 @@
 package sample;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -25,21 +23,13 @@ public class Main extends Application {
         primaryStage.setTitle("Simple Notes");
         primaryStage.initStyle(StageStyle.UNDECORATED);
 
-
-        //TODO
-        root.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                xLoc = event.getSceneX();
-                yLoc = event.getSceneY();
-            }
+        root.setOnMousePressed(event -> {
+            xLoc = event.getSceneX();
+            yLoc = event.getSceneY();
         });
-        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                primaryStage.setX(event.getScreenX() - xLoc);
-                primaryStage.setY(event.getScreenY() - yLoc);
-            }
+        root.setOnMouseDragged(event -> {
+            primaryStage.setX(event.getScreenX() - xLoc);
+            primaryStage.setY(event.getScreenY() - yLoc);
         });
 
         primaryStage.setScene(new Scene(root, 800, 600));

@@ -1,0 +1,46 @@
+.blackTree {
+	-fx-background-color: #000000;
+}
+
+.blackTree .tree-cell {
+	-fx-padding: 6 0 0 0;
+	-fx-background-color: #000000;
+	-fx-text-fill: lightgrey;
+}
+
+.blackTree .tree-cell:focused {
+	-fx-text-fill: white;
+}
+
+.blackTree .tree-cell .arrow {
+	-fx-shape: "M 0 -4 L 7 0 L 0 4 z";
+	-fx-scale-shape: false;
+	-fx-background-color: red;
+}
+
+.roundedButtons {
+	-fx-background-radius: 10;
+	-fx-font: 1em "Arial Bold";
+}
+
+.standardNote .content {
+		-fx-background-color: #ffffc9;
+		-fx-border-color:#b3b3b3;
+			-fx-text-fill: black;
+}
+
+.standardNote:focused {
+	-fx-background-color: -fx-focus-color, transparent, #ffffc9;
+}
+
+.standardNote:hover {
+		-fx-background-color: -fx-focus-color, -fx-text-box-border, #ffffc9;
+}
+
+.whiteCrown {
+		-fx-background-color: white;
+}
+
+.standardDetails {
+		-fx-background-color: lightgrey;
+}

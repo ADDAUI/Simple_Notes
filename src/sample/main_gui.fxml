@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="whiteCrown" stylesheets="@main_css.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mainPanel" maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="whiteCrown"
+            stylesheets="@main_css.css" xmlns="http://javafx.com/javafx/8" fx:controller="sample.Controller">
    <children>
-      <SplitPane dividerPositions="0.25" layoutX="290.0" layoutY="50.0" prefHeight="550.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+       <SplitPane dividerPositions="0.25" layoutX="290.0" layoutY="50.0" minHeight="300.0" minWidth="570.0"
+                  prefHeight="550.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                  AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" SplitPane.resizableWithParent="false">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" SplitPane.resizableWithParent="false">
+            <AnchorPane maxWidth="290.0" minHeight="300.0" minWidth="150.0" prefHeight="160.0" prefWidth="100.0"
+                        SplitPane.resizableWithParent="false">
                <children>
                   <TreeView fx:id="tree" layoutY="173.0" opacity="0.99" prefHeight="598.0" prefWidth="197.0" showRoot="false" styleClass="blackTree" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
-          <AnchorPane fx:id="note_panel" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+            <AnchorPane fx:id="note_panel" minHeight="300.0" minWidth="400.0" prefHeight="160.0" prefWidth="100.0"
+                        SplitPane.resizableWithParent="false">
                <children>
-                  <SplitPane dividerPositions="0.1" layoutX="224.0" layoutY="161.0" orientation="VERTICAL" prefHeight="598.0" prefWidth="595.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                   <SplitPane dividerPositions="0.1" layoutX="224.0" layoutY="161.0" orientation="VERTICAL"
+                              prefHeight="598.0" prefWidth="595.0" AnchorPane.bottomAnchor="0.0"
+                              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
+                              SplitPane.resizableWithParent="false">
                     <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" opacity="0.99" prefHeight="100.0" prefWidth="160.0" styleClass="standardDetails">
+                        <AnchorPane maxHeight="52.0" minHeight="52.0" minWidth="490.0" opacity="0.99" prefHeight="100.0"
+                                    prefWidth="160.0" styleClass="standardDetails">
                            <children>
-                              <HBox alignment="CENTER_LEFT" layoutX="47.0" layoutY="2.0" spacing="5.0" AnchorPane.leftAnchor="47.0" AnchorPane.topAnchor="2.0">
+                               <HBox alignment="CENTER_LEFT" layoutX="47.0" layoutY="2.0" prefHeight="25.0"
+                                     prefWidth="532.0" spacing="5.0" AnchorPane.leftAnchor="47.0"
+                                     AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="2.0">
                                  <children>
                                     <Label layoutX="47.0" layoutY="6.0" minWidth="-Infinity" text="Title :" />
                                     <TextField fx:id="title" layoutX="80.0" layoutY="2.0" prefHeight="25.0" prefWidth="223.0" promptText="Hello World !!" AnchorPane.leftAnchor="80.0" HBox.hgrow="ALWAYS" />
@@ -36,7 +41,7 @@
                               <HBox alignment="CENTER_LEFT" layoutX="15.0" layoutY="30.0" spacing="5.0" AnchorPane.leftAnchor="15.0">
                                  <children>
                                     <Label layoutX="15.0" layoutY="30.0" text="Created in :" />
-                                    <Label fx:id="date_created" layoutX="80.0" layoutY="30.0" text="00/00/0000" />
+                                     <Label fx:id="date_created" layoutX="80.0" layoutY="30.0" text="Jan 00, 0000"/>
                                     <Label layoutX="146.0" layoutY="30.0" text="At :" />
                                     <Label fx:id="time_created" layoutX="170.0" layoutY="30.0" text="00:00:00 AM" />
                                  </children>
@@ -44,7 +49,8 @@
                               <HBox alignment="CENTER_LEFT" layoutX="368.0" layoutY="30.0" spacing="5.0" AnchorPane.rightAnchor="14.0">
                                  <children>
                                     <Label layoutX="310.0" layoutY="30.0" text="Updated in :" HBox.hgrow="ALWAYS" />
-                                    <Label fx:id="date_updated" layoutX="379.0" layoutY="30.0" text="00/00/0000" HBox.hgrow="ALWAYS" />
+                                     <Label fx:id="date_updated" layoutX="379.0" layoutY="30.0" text="Jan 00, 0000"
+                                            HBox.hgrow="ALWAYS"/>
                                     <Label layoutX="445.0" layoutY="30.0" text="At :" HBox.hgrow="ALWAYS" />
                                     <Label fx:id="time_updated" layoutX="469.0" layoutY="30.0" text="00:00:00 AM" HBox.hgrow="ALWAYS" />
                                  </children>
@@ -64,21 +70,35 @@
       </SplitPane>
       <ImageView fitHeight="38.0" fitWidth="200.0" layoutX="10.0" layoutY="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
          <image>
-            <Image url="@SimpleNotes.png" />
+             <Image url="@drawable/SimpleNotes.png"/>
          </image>
       </ImageView>
-      <HBox layoutX="630.0" layoutY="12.0" spacing="15.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="12.0">
+       <HBox layoutX="630.0" layoutY="12.0" spacing="10.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="12.0">
          <children>
-            <Button fx:id="newBtn" layoutX="630.0" layoutY="12.0" mnemonicParsing="false" styleClass="roundedButtons" text="New" />
-            <Button fx:id="saveBtn" layoutX="682.0" layoutY="12.0" mnemonicParsing="false" styleClass="roundedButtons" text="Save" />
-            <Button fx:id="deleteBtn" layoutX="734.0" layoutY="12.0" mnemonicParsing="false" styleClass="roundedButtons" text="Delete" />
+             <Button id="new" fx:id="newBtn" layoutX="630.0" layoutY="12.0" minWidth="25.0" mnemonicParsing="false"
+                     styleClass="roundedButtons"/>
+             <Button id="save" fx:id="saveBtn" layoutX="682.0" layoutY="12.0" minWidth="25.0" mnemonicParsing="false"
+                     styleClass="roundedButtons"/>
+             <Button id="delete" fx:id="deleteBtn" layoutX="734.0" layoutY="12.0" minWidth="25.0"
+                     mnemonicParsing="false" styleClass="roundedButtons"/>
+             <Button id="setting" fx:id="settingBtn" minWidth="25.0" mnemonicParsing="false"
+                     styleClass="roundedButtons"/>
+             <Button id="close" fx:id="closeBtn" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0"
+                     minWidth="25.0" mnemonicParsing="false" styleClass="roundedButtons">
+                 <opaqueInsets>
+                     <Insets/>
+                 </opaqueInsets>
+                 <HBox.margin>
+                     <Insets/>
+                 </HBox.margin>
+             </Button>
          </children>
       </HBox>
       <HBox fx:id="notification_panel" alignment="CENTER_LEFT" layoutX="225.0" layoutY="16.0" opacity="0.0" spacing="5.0">
          <children>
             <ImageView fitHeight="17.0" fitWidth="18.0" layoutX="225.0" layoutY="16.0">
                <image>
-                  <Image url="@notification.png" />
+                   <Image url="@drawable/notification.png"/>
                </image>
             </ImageView>
             <Label fx:id="notification" layoutX="249.0" layoutY="16.0" prefHeight="17.0" prefWidth="375.0" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="176.0" />

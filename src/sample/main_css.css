@@ -44,3 +44,38 @@
 .standardDetails {
 		-fx-background-color: lightgrey;
 }
+
+#close {          
+    -fx-background-image: url("drawable/close.png");
+    -fx-background-size: 16 16;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:center;   
+}
+
+#setting {          
+    -fx-background-image: url("drawable/setting.png");
+    -fx-background-size: 16 16;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:center;   
+}
+
+#delete {          
+    -fx-background-image: url("drawable/delete.png");
+    -fx-background-size: 16 16;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:center;   
+}
+
+#save {          
+    -fx-background-image: url("drawable/save.png");
+    -fx-background-size: 16 16;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:center;   
+}
+
+#new {          
+    -fx-background-image: url("drawable/new.png");
+    -fx-background-size: 16 16;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:center;   
+}

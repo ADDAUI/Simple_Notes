@@ -1,12 +1,14 @@
 package sample;
 
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
+
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -19,17 +21,18 @@ public class Controller implements Initializable {
 
     //LogID and sample.Log class are used only for logging purposes.
     private static final String logID = "Dev_ADDAUI";
-
-    //notesList are the note list.
-    private NotesList notesList = new NotesList();
-    private TreeItem<Note> rootItem = new TreeItem<>(new Note("Quick Notes", ""));
-
     //Defining Gui Elements
+    @FXML
+    AnchorPane mainPanel;
     @FXML Label notification;
     @FXML TreeView<Note> tree;
     @FXML Button saveBtn;
     @FXML Button newBtn;
     @FXML Button deleteBtn;
+    @FXML
+    Button settingBtn;
+    @FXML
+    Button closeBtn;
     @FXML TextField title;
     @FXML TextArea content;
     @FXML Label date_created;
@@ -38,7 +41,12 @@ public class Controller implements Initializable {
     @FXML Label time_updated;
     @FXML AnchorPane note_panel;
     @FXML HBox notification_panel;
-
+    //notesList are the note list.
+    private NotesList notesList = new NotesList();
+    private TreeItem<Note> rootItem = new TreeItem<>(new Note("Quick Notes", ""));
+    //xLoc, yLoc are used to drag the window.
+    private double xLoc = 0;
+    private double yLoc = 0;
     //animation
     private FadeTransition fadeIn = new FadeTransition(new Duration(2000));
 
@@ -107,8 +115,8 @@ public class Controller implements Initializable {
             if (rootItem.getChildren().size() == 0) {
                 title.clear();
                 content.clear();
-                date_created.setText("00/00/0000");
-                date_updated.setText("00/00/0000");
+                date_created.setText("Jan 00, 0000");
+                date_updated.setText("Jan 00, 0000");
                 time_created.setText("00:00:00 AM");
                 time_updated.setText("00:00:00 AM");
                 note_panel.setDisable(true);
@@ -116,6 +124,12 @@ public class Controller implements Initializable {
             setNotification("Note Deleted");
             tree.refresh();
         });
+
+        settingBtn.setOnAction(event -> {
+            //TODO Open Setting Window
+        });
+
+        closeBtn.setOnAction(event -> Platform.exit());
 
         tree.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             Log.v(logID, "Controller.changed");
@@ -127,8 +141,6 @@ public class Controller implements Initializable {
 
             note_panel.setDisable(false);
         });
-
-
     }
 
     private void updateDetails(Note note) {

@@ -7,11 +7,13 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
-
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.TimeZone;
 
 public class Controller implements Initializable {
 
@@ -48,6 +50,13 @@ public class Controller implements Initializable {
         tree.setRoot(rootItem);
         tree.refresh();
 
+        if(notesList.loadNotes()){
+            for (Note note: notesList) {
+                rootItem.getChildren().add(new TreeItem<>(note));
+            }
+            tree.refresh();
+        }
+
         if (tree.getSelectionModel().isEmpty()) {
             note_panel.setDisable(true);
         } else {
@@ -66,7 +75,8 @@ public class Controller implements Initializable {
             Log.i(logID, "\n" + notesList.toString());
         });
 
-        saveBtn.setOnAction(event -> {if (rootItem.getChildren().size() == 0) {
+        saveBtn.setOnAction(event -> {
+            if (rootItem.getChildren().size() == 0) {
                 Log.w(logID, "Hey the tree is empty!!");
                 setNotification("No Note Selected !!!");
                 return;
@@ -75,6 +85,8 @@ public class Controller implements Initializable {
                 String newTitle = title.getText();
                 String newContent = content.getText();
                 notesList.getNote(tree.getSelectionModel().getSelectedIndex()).updateNote(newTitle, newContent, Date.from(Instant.now()));
+                updateDetails(notesList.getNote(tree.getSelectionModel().getSelectedIndex()));
+                notesList.saveNotes();
                 tree.refresh();
                 setNotification("Note Saved");
             }
@@ -86,9 +98,12 @@ public class Controller implements Initializable {
                 setNotification("No Note Selected!");
                 return;
             }
-            int index = tree.getSelectionModel().getSelectedIndex();
-            notesList.deleteNote(index);
-            rootItem.getChildren().remove(index);
+            if(!tree.getSelectionModel().isEmpty()) {
+                int index = tree.getSelectionModel().getSelectedIndex();
+                notesList.deleteNote(index);
+                rootItem.getChildren().remove(index);
+                notesList.saveNotes();
+            }
             if (rootItem.getChildren().size() == 0) {
                 title.clear();
                 content.clear();
@@ -118,13 +133,17 @@ public class Controller implements Initializable {
 
     private void updateDetails(Note note) {
 
+        DateFormat date = new SimpleDateFormat("MMM dd, yyyy");
+        date.setTimeZone(TimeZone.getTimeZone("GMT+3"));
+        DateFormat time = new SimpleDateFormat("hh:mm:ss aa");
+        time.setTimeZone(TimeZone.getTimeZone("GMT+3"));
+
         title.setText(note.getTitle());
         content.setText(note.getContent());
-        //TODO http://stackoverflow.com/questions/657962/a-non-deprecated-exact-equivalent-of-datestring-s-in-java
-        date_created.setText(note.getCreated().toLocaleString().substring(0, 12));
-        time_created.setText(note.getCreated().toLocaleString().substring(13, 23));
-        date_updated.setText(note.getUpdated().toLocaleString().substring(0, 12));
-        time_updated.setText(note.getUpdated().toLocaleString().substring(13, 23));
+        date_created.setText(date.format(note.getCreated()));
+        time_created.setText(time.format(note.getCreated()));
+        date_updated.setText(date.format(note.getUpdated()));
+        time_updated.setText(time.format(note.getUpdated()));
 
 
     }
@@ -139,4 +158,5 @@ public class Controller implements Initializable {
         fadeIn.playFromStart();
         fadeIn.setOnFinished(value -> notification.setText(""));
     }
+
 }

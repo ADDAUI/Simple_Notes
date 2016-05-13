@@ -1,7 +1,6 @@
 package sample;
 
 import javafx.animation.FadeTransition;
-import javafx.beans.property.ObjectProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;

@@ -1,47 +1,72 @@
 package sample;
 
-import java.io.Serializable;
-import java.sql.Date;
-import java.time.Instant;
+import java.io.*;
 import java.util.LinkedList;
 
 /**
  * Created by ADDAUI on 5/12/2016.
+ * This Class is used to connect the TreeView with the Notes.
  */
-public class NotesList implements Serializable {
+class NotesList extends LinkedList<Note>{
 
-    private static LinkedList<Note> notes = new LinkedList<>();
+    //LogID and sample.Log class are used only for logging purposes.
+    private static final String logID = "Dev_ADDAUI";
 
     //add a new note
-    public boolean newNote(String title,String content){
-        notes.add(new Note(title,content));
+    boolean newNote(String title,String content){
+        this.add(new Note(title,content));
         return true;
     }
 
-    //save a note
-    public boolean saveNote(int position,String title, String content){
-        notes.get(position).updateNote(title,content, Date.from(Instant.now()));
+    boolean deleteNote(int position){
+        this.remove(position);
         return true;
     }
 
-    public boolean deleteNote(int position){
-        notes.remove(position);
-        return true;
+    Note getNote(int position){
+        return this.get(position);
     }
 
-    public Note getNote(int position){
-        return notes.get(position);
+    int getSize(){
+        return this.size();
     }
 
-    public int getSize(){
-        return notes.size();
+    void saveNotes(){
+        try{
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("notes.ser"));
+            oos.writeObject(this);
+            oos.flush();
+            oos.close();
+            Log.i(logID,"notes List Saved to a file");
+        }catch(Exception e){
+            Log.e(logID,"Not saved due to an error : " + e.getMessage());
+            e.getMessage();
+            e.printStackTrace();
+        }
+    }
+
+    boolean loadNotes(){
+        try{
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("notes.ser"));
+            this.addAll((NotesList) ois.readObject());
+            ois.close();
+            Log.i(logID,"Note Loaded from file");
+            Log.d(logID,"Content are : \n" + this);
+            return true;
+        }catch (FileNotFoundException e){
+            Log.e(logID,"File not Found !!!, Creating a new one.");
+            return false;
+        }catch(Exception e){
+            Log.e(logID,"Not Loaded due to an error : " + e.getMessage());
+            return false;
+        }
     }
 
     @Override
     public String toString() {
         StringBuilder string = new StringBuilder();
         for (int i=0;i<getSize();i++){
-            string.append("Position : "+i+"\tNote : "+getNote(i)+"\n");
+            string.append("Position : ").append(i).append("\tNote : ").append(getNote(i)).append("\n");
         }
         return string.toString();
     }

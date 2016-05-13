@@ -1,5 +1,6 @@
 package sample;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.Date;
 
@@ -7,7 +8,9 @@ import java.util.Date;
  * Created by ADDAUI on 5/12/2016.
  * This class contain all information needed for a note object.
  */
-public class Note {
+public class Note implements Serializable{
+
+    static final long serialVersionUID = 1L;
 
     private String title;
     private String content;
@@ -20,43 +23,27 @@ public class Note {
         this.updated = this.created = Date.from(Instant.now());
     }
 
-    public boolean updateNote(String title,String content, Date updated){
+    boolean updateNote(String title,String content, Date updated){
         this.title = title;
         this.content = content;
         this.updated = updated;
         return true;
     }
 
-    public String getTitle() {
+    String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
+    String getContent() {
         return content;
     }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public Date getCreated() {
+    Date getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public Date getUpdated() {
+    Date getUpdated() {
         return updated;
-    }
-
-    public void setUpdated(Date updated) {
-        this.updated = updated;
     }
 
     @Override

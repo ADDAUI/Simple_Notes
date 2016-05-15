@@ -13,7 +13,7 @@ Libraries: JavaFX [GUI]
 
 #Next Update
 
-- Implmetnt Setting Panel.
+- Language switching.
 
 #Credits
 

@@ -1,0 +1,155 @@
+/* Top Style */
+.top {
+        -fx-background-color: #424242;
+        -fx-border-color: #323232;
+        -fx-border-width: 2;
+}
+
+.topImage {
+    -fx-image : url("../drawable/SimpleNotes_dark.png")
+}
+
+.roundedButtons {
+    -fx-background-color:#888888;     
+	-fx-font: 1em "Arial Bold";
+    -fx-content-display: CENTER;
+    -fx-alignment: CENTER;
+    -fx-background-insets: 0px 0px -1px 0px, 0px, 1px, 2px;
+
+}
+
+.roundedButtons:hover {
+    -fx-background-color:#AAAAAA;     
+}
+
+.roundedButtons:pressed {
+    -fx-background-color:#EEEEEE;     
+}
+
+
+/*Split Panel Style */
+.split-pane {
+   -fx-background-color: transparent;
+}
+
+.split-pane .split-pane-divider  {
+   -fx-background-color: transparent;
+}
+
+
+
+/* Tree Style */
+.blackTree {
+	-fx-background-color: #313131;
+    -fx-background-radius: 10;
+}
+
+.blackTree .tree-cell {
+	-fx-padding: 3 0 3 0;
+	-fx-background-color: #313131;
+	-fx-text-fill: #C0C0C0;
+    -fx-background-radius: 10;
+}
+
+.blackTree .tree-cell:focused {
+	-fx-text-fill: #FFFFFF;
+	-fx-background-color: #212121;  
+}
+
+.blackTree .tree-cell .arrow {
+	-fx-shape: "M 0 -4 L 7 0 L 0 4 z";
+	-fx-scale-shape: false;
+	-fx-background-color: #E0E0E0;
+}
+
+.scroll-bar {
+    -fx-background-color : transparent ;
+}
+
+.scroll-bar .thumb  {
+    -fx-background-color : #505050;
+}
+
+.blackTree .virtual-flow .corner    {
+    -fx-background-color : transparent;
+}
+
+
+/*Note Deatail*/
+.standardDetails {
+		-fx-background-color: #212121;
+        -fx-background-radius: 10;
+}
+
+#titleField {
+        -fx-background-insets: 0, 1;
+        -fx-background-radius: 3, 2;
+        -fx-text-box-border: #323232 ;
+        -fx-control-inner-background: #989898 ;
+        -fx-focus-color: #000000 ;
+        -fx-faint-focus-color: #202020 ;
+}
+
+.label .text {
+    -fx-fill: #E0E0E0;
+}
+
+
+
+/* Note Style */
+.text-area {  
+        -fx-background-radius: 10;
+}
+
+.standardNote .content {
+		-fx-background-color: #FFFFCC;
+		-fx-border-color:#b3b3b3;
+		-fx-text-fill: #000000;
+}
+
+.standardNote:focused {
+	-fx-background-color: -fx-focus-color, transparent, #FFFFCC;
+}
+
+.standardNote:hover {
+		-fx-background-color: -fx-focus-color, -fx-text-box-border, #FFFFCC;
+        -fx-background-radius: 10;
+}
+
+
+
+/*Icons*/
+#close {     
+    -fx-background-image: url("../drawable/close.png");
+    -fx-background-size: 16 16;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:center;   
+}
+
+#setting {          
+    -fx-background-image: url("../drawable/setting.png");
+    -fx-background-size: 16 16;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:center;   
+}
+
+#delete {          
+    -fx-background-image: url("../drawable/delete.png");
+    -fx-background-size: 16 16;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:center;   
+}
+
+#save {          
+    -fx-background-image: url("../drawable/save.png");
+    -fx-background-size: 16 16;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:center;   
+}
+
+#new {          
+    -fx-background-image: url("../drawable/new.png");
+    -fx-background-size: 16 16;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:center;   
+}

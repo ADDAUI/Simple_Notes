@@ -9,17 +9,41 @@ import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
+    private static Stage stage = null;
+
     //xLoc, yLoc are used to drag the window.
-    private double xLoc = 0;
-    private double yLoc = 0;
+    private double xLoc;
+    private double yLoc;
 
     public static void main(String[] args) {
+        Config.loadConfig();
         launch(args);
+    }
+
+    static void applyConfig() {
+
+        //Apply Language
+        //TODO
+
+        stage.close();
+        stage = new Stage();
+        Main main = new Main();
+        try {
+            main.start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("main_gui.fxml"));
+        buildStage(primaryStage, "res/main_gui.fxml", ("styles/main_" + Config.getTheme().toLowerCase() + ".css"));
+        stage = primaryStage;
+        primaryStage.show();
+    }
+
+    private void buildStage(Stage primaryStage, String fxml, String css) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource(fxml));
         primaryStage.setTitle("Simple Notes");
         primaryStage.initStyle(StageStyle.UNDECORATED);
 
@@ -32,9 +56,11 @@ public class Main extends Application {
             primaryStage.setY(event.getScreenY() - yLoc);
         });
 
-        primaryStage.setScene(new Scene(root, 800, 600));
-        primaryStage.show();
+        root.getStylesheets().clear();
+        root.getStylesheets().add(getClass().getResource(css).toString());
 
+        primaryStage.setScene(new Scene(root, 800, 600));
 
     }
+
 }

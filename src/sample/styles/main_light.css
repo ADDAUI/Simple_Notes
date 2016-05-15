@@ -1,21 +1,22 @@
 .blackTree {
-	-fx-background-color: #000000;
+	-fx-background-color: #e0e0e0;
 }
 
 .blackTree .tree-cell {
-	-fx-padding: 6 0 0 0;
-	-fx-background-color: #000000;
-	-fx-text-fill: lightgrey;
+	-fx-padding: 3 0 3 0;
+	-fx-background-color: #e0e0e0;
+	-fx-text-fill: grey;
 }
 
 .blackTree .tree-cell:focused {
-	-fx-text-fill: white;
+	-fx-text-fill: #000000;
+	-fx-background-color: #FAFAFA;  
 }
 
 .blackTree .tree-cell .arrow {
 	-fx-shape: "M 0 -4 L 7 0 L 0 4 z";
 	-fx-scale-shape: false;
-	-fx-background-color: red;
+	-fx-background-color: black;
 }
 
 .roundedButtons {
@@ -24,57 +25,63 @@
 }
 
 .standardNote .content {
-		-fx-background-color: #ffffc9;
+		-fx-background-color: #ffff99;
 		-fx-border-color:#b3b3b3;
-			-fx-text-fill: black;
+		-fx-text-fill: #000000;
 }
 
 .standardNote:focused {
-	-fx-background-color: -fx-focus-color, transparent, #ffffc9;
+	-fx-background-color: -fx-focus-color, transparent, #ffff99;
 }
 
 .standardNote:hover {
-		-fx-background-color: -fx-focus-color, -fx-text-box-border, #ffffc9;
+		-fx-background-color: -fx-focus-color, -fx-text-box-border, #ffff99;
 }
 
-.whiteCrown {
-		-fx-background-color: white;
+.top {
+		-fx-background-color: #FFFFFF;
+        -fx-border-color: lightgrey;
+        -fx-border-width: 2;
+}
+
+.topImage   {
+    -fx-image : url("../drawable/SimpleNotes_light.png")
 }
 
 .standardDetails {
-		-fx-background-color: lightgrey;
+		-fx-background-color: #F5F5F5;
 }
 
 #close {          
-    -fx-background-image: url("drawable/close.png");
+    -fx-background-image: url("../drawable/close.png");
     -fx-background-size: 16 16;
     -fx-background-repeat: no-repeat;
     -fx-background-position:center;   
 }
 
 #setting {          
-    -fx-background-image: url("drawable/setting.png");
+    -fx-background-image: url("../drawable/setting.png");
     -fx-background-size: 16 16;
     -fx-background-repeat: no-repeat;
     -fx-background-position:center;   
 }
 
 #delete {          
-    -fx-background-image: url("drawable/delete.png");
+    -fx-background-image: url("../drawable/delete.png");
     -fx-background-size: 16 16;
     -fx-background-repeat: no-repeat;
     -fx-background-position:center;   
 }
 
 #save {          
-    -fx-background-image: url("drawable/save.png");
+    -fx-background-image: url("../drawable/save.png");
     -fx-background-size: 16 16;
     -fx-background-repeat: no-repeat;
     -fx-background-position:center;   
 }
 
 #new {          
-    -fx-background-image: url("drawable/new.png");
+    -fx-background-image: url("../drawable/new.png");
     -fx-background-size: 16 16;
     -fx-background-repeat: no-repeat;
     -fx-background-position:center;   

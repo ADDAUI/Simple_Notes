@@ -11,6 +11,10 @@ Language: Java
 
 Libraries: JavaFX [GUI]
 
+#Next Update
+
+- Implmetnt Setting Panel.
+
 #Credits
 
 Programmer: Audai Al-Fandi (me).

@@ -1,45 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="376.0" prefWidth="230.0" styleClass="setting-anchor" stylesheets="@../styles/setting_dark.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SettingController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="376.0"
+            prefWidth="230.0" styleClass="setting-anchor" stylesheets="@../styles/setting_dark.css"
+            xmlns="http://javafx.com/javafx/8" fx:controller="sample.SettingController">
     <children>
-        <HBox alignment="CENTER_RIGHT" layoutX="456.0" layoutY="361.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="86.0" AnchorPane.rightAnchor="14.0">
+        <HBox alignment="CENTER_RIGHT" layoutX="456.0" layoutY="361.0" spacing="10.0" AnchorPane.bottomAnchor="10.0"
+              AnchorPane.leftAnchor="86.0" AnchorPane.rightAnchor="14.0">
             <children>
-                <Button fx:id="cancelBtn" layoutX="482.0" layoutY="188.0" maxWidth="60.0" minWidth="60.0" mnemonicParsing="false" prefWidth="60.0" text="إلغاء" />
-                <Button fx:id="okButton" layoutX="534.0" layoutY="188.0" maxWidth="60.0" minWidth="60.0" mnemonicParsing="false" prefWidth="60.0" text="موافق" />
+                <Button fx:id="cancelBtn" layoutX="482.0" layoutY="188.0" maxWidth="60.0" minWidth="60.0"
+                        mnemonicParsing="false" prefWidth="60.0" text="إلغاء"/>
+                <Button fx:id="okButton" layoutX="534.0" layoutY="188.0" maxWidth="60.0" minWidth="60.0"
+                        mnemonicParsing="false" prefWidth="60.0" text="موافق"/>
             </children>
         </HBox>
-        <TabPane layoutX="6.0" layoutY="22.0" prefHeight="283.0" prefWidth="222.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="20.0">
+        <TabPane layoutX="6.0" layoutY="22.0" prefHeight="283.0" prefWidth="222.0" tabClosingPolicy="UNAVAILABLE"
+                 AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0"
+                 AnchorPane.topAnchor="20.0">
             <tabs>
                 <Tab text="المظهر">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="326.0" prefWidth="219.0">
                             <children>
-                                <Label layoutX="15.0" layoutY="15.0" text="اللغة :" AnchorPane.leftAnchor="15.0" />
-                                <MenuButton fx:id="language" contentDisplay="RIGHT" layoutX="15.0" layoutY="40.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="اللغة" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+                                <Label layoutX="15.0" layoutY="15.0" text="اللغة :" AnchorPane.leftAnchor="15.0"/>
+                                <MenuButton fx:id="language" contentDisplay="RIGHT" layoutX="15.0" layoutY="40.0"
+                                            mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="اللغة"
+                                            AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
                                     <items>
-                                        <RadioMenuItem fx:id="ar" mnemonicParsing="false" styleClass="menu-item-test" text="العربية">
+                                        <RadioMenuItem fx:id="ar" mnemonicParsing="false" styleClass="menu-item-test"
+                                                       text="العربية">
                                             <toggleGroup>
-                                                <ToggleGroup fx:id="language_tg" />
+                                                <ToggleGroup fx:id="language_tg"/>
                                             </toggleGroup>
                                         </RadioMenuItem>
-                                        <RadioMenuItem fx:id="en" mnemonicParsing="false" selected="true" text="English" toggleGroup="$language_tg" />
+                                        <RadioMenuItem fx:id="en" mnemonicParsing="false" selected="true" text="English"
+                                                       toggleGroup="$language_tg"/>
                                     </items>
                                 </MenuButton>
-                                <MenuButton fx:id="theme" contentDisplay="RIGHT" layoutX="15.0" layoutY="110.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="الموضوع" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+                                <MenuButton fx:id="theme" contentDisplay="RIGHT" layoutX="15.0" layoutY="110.0"
+                                            mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="الموضوع"
+                                            AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
                                     <items>
-                                        <RadioMenuItem fx:id="light" mnemonicParsing="false" selected="true" text="Light">
+                                        <RadioMenuItem fx:id="light" mnemonicParsing="false" selected="true"
+                                                       text="Light">
                                             <toggleGroup>
-                                                <ToggleGroup fx:id="theme_tg" />
+                                                <ToggleGroup fx:id="theme_tg"/>
                                             </toggleGroup>
                                         </RadioMenuItem>
-                                        <RadioMenuItem fx:id="dark" mnemonicParsing="false" text="Dark" toggleGroup="$theme_tg" />
+                                        <RadioMenuItem fx:id="dark" mnemonicParsing="false" text="Dark"
+                                                       toggleGroup="$theme_tg"/>
                                     </items>
                                 </MenuButton>
-                                <Label layoutX="15.0" layoutY="85.0" text="الموضوع :" AnchorPane.leftAnchor="15.0" />
+                                <Label layoutX="15.0" layoutY="85.0" text="الموضوع :" AnchorPane.leftAnchor="15.0"/>
                             </children>
                         </AnchorPane>
                     </content>
@@ -48,27 +62,41 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <Label layoutX="15.0" layoutY="15.0" text="منطقة زمنية :" AnchorPane.leftAnchor="15.0" />
-                                <Label layoutX="15.0" layoutY="85.0" text="بنية التاريخ :" AnchorPane.leftAnchor="15.0" />
-                                <Label layoutX="15.0" layoutY="160.0" text="بنية الزمن :" AnchorPane.leftAnchor="15.0" />
-                                <Label fx:id="gmtOffset" layoutX="114.0" layoutY="15.0" text="GMT" />
-                                <TextField fx:id="dateFormat" layoutX="15.0" layoutY="110.0" prefHeight="25.0" prefWidth="200.0" promptText="MMM dd, yyyy" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
-                                <TextField fx:id="timeFormat" layoutX="15.0" layoutY="185.0" prefHeight="25.0" prefWidth="200.0" promptText="hh:mm:ss aa" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
-                                <Label id="test" fx:id="dfError" layoutX="53.0" layoutY="138.0" opacity="0.0" prefHeight="17.0" prefWidth="149.0" style="-fx-text-fill: red;" styleClass="error-label" textFill="RED" AnchorPane.rightAnchor="15.0" />
-                                <Label fx:id="tfError" layoutX="54.0" layoutY="213.0" opacity="0.0" prefHeight="17.0" prefWidth="149.0" style="-fx-text-fill: red;" styleClass="error-label" textFill="RED" AnchorPane.rightAnchor="15.0" />
-                                <Hyperlink fx:id="link" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="84.0" layoutY="250.0" text="https://goo.gl/lHwz01" AnchorPane.rightAnchor="10.0" />
-                                <Label layoutX="67.0" layoutY="235.0" text="للمساعدة في كتابة البنية, أنظر الرابط..." AnchorPane.rightAnchor="15.0" />
-                                <Slider fx:id="gmtSlider" blockIncrement="1.0" layoutX="39.0" layoutY="40.0" majorTickUnit="6.0" max="12.0" min="-12.0" minorTickCount="5" prefHeight="38.0" prefWidth="188.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
-                                <Label layoutX="15.0" layoutY="138.0" text="التاريخ :" />
-                                <Label fx:id="dfExample" layoutX="51.0" layoutY="138.0" text=" " />
-                                <Label fx:id="tfExample" layoutX="51.0" layoutY="213.0" text=" " />
-                                <Label layoutX="15.0" layoutY="213.0" text="الزمن :" />
+                                <Label layoutX="15.0" layoutY="15.0" text="منطقة زمنية :" AnchorPane.leftAnchor="15.0"/>
+                                <Label layoutX="15.0" layoutY="85.0" text="بنية التاريخ :"
+                                       AnchorPane.leftAnchor="15.0"/>
+                                <Label layoutX="15.0" layoutY="160.0" text="بنية الزمن :" AnchorPane.leftAnchor="15.0"/>
+                                <Label fx:id="gmtOffset" layoutX="114.0" layoutY="15.0" text="GMT"/>
+                                <TextField fx:id="dateFormat" layoutX="15.0" layoutY="110.0" prefHeight="25.0"
+                                           prefWidth="200.0" promptText="MMM dd, yyyy" AnchorPane.leftAnchor="15.0"
+                                           AnchorPane.rightAnchor="15.0"/>
+                                <TextField fx:id="timeFormat" layoutX="15.0" layoutY="185.0" prefHeight="25.0"
+                                           prefWidth="200.0" promptText="hh:mm:ss aa" AnchorPane.leftAnchor="15.0"
+                                           AnchorPane.rightAnchor="15.0"/>
+                                <Label id="test" fx:id="dfError" layoutX="53.0" layoutY="138.0" opacity="0.0"
+                                       prefHeight="17.0" prefWidth="149.0" style="-fx-text-fill: red;"
+                                       styleClass="error-label" textFill="RED" AnchorPane.rightAnchor="15.0"/>
+                                <Label fx:id="tfError" layoutX="54.0" layoutY="213.0" opacity="0.0" prefHeight="17.0"
+                                       prefWidth="149.0" style="-fx-text-fill: red;" styleClass="error-label"
+                                       textFill="RED" AnchorPane.rightAnchor="15.0"/>
+                                <Hyperlink fx:id="link" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="84.0"
+                                           layoutY="250.0" text="https://goo.gl/lHwz01" AnchorPane.rightAnchor="10.0"/>
+                                <Label layoutX="67.0" layoutY="235.0" text="للمساعدة في كتابة البنية, أنظر الرابط..."
+                                       AnchorPane.rightAnchor="15.0"/>
+                                <Slider fx:id="gmtSlider" blockIncrement="1.0" layoutX="39.0" layoutY="40.0"
+                                        majorTickUnit="6.0" max="12.0" min="-12.0" minorTickCount="5" prefHeight="38.0"
+                                        prefWidth="188.0" showTickLabels="true" showTickMarks="true" snapToTicks="true"
+                                        AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0"/>
+                                <Label layoutX="15.0" layoutY="138.0" text="التاريخ :"/>
+                                <Label fx:id="dfExample" layoutX="51.0" layoutY="138.0" text=" "/>
+                                <Label fx:id="tfExample" layoutX="51.0" layoutY="213.0" text=" "/>
+                                <Label layoutX="15.0" layoutY="213.0" text="الزمن :"/>
                             </children>
                         </AnchorPane>
                     </content>
                 </Tab>
             </tabs>
         </TabPane>
-        <Label layoutX="96.0" layoutY="5.0" text="الإعدادات" />
+        <Label layoutX="96.0" layoutY="5.0" text="الإعدادات"/>
     </children>
 </AnchorPane>

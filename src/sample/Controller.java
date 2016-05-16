@@ -25,6 +25,10 @@ import java.util.TimeZone;
 
 public class Controller implements Initializable {
 
+    //TODO add a Locale Dictionary and make as much of the strings as I can into the dictionary.
+    //TODO Link hide after clicking, help him stop drinking.
+    //TODO make notes save stuff when switched
+
     //LogID and sample.Log class are used only for logging purposes.
     private static final String logID = "Dev_ADDAUI";
     //Setting Stage
@@ -49,6 +53,9 @@ public class Controller implements Initializable {
     @FXML Label time_updated;
     @FXML AnchorPane note_panel;
     @FXML HBox notification_panel;
+    //xLoc, yLoc are used to drag the window.
+    private double xLoc;
+    private double yLoc;
     //notesList are the note list.
     private NotesList notesList = new NotesList();
     private TreeItem<Note> rootItem = new TreeItem<>(new Note("Quick Notes", ""));
@@ -57,27 +64,27 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Log.setState('i');
-
+        //Add tooltips to the buttons.
         newBtn.tooltipProperty().set(new Tooltip("Add a new note"));
         saveBtn.tooltipProperty().set(new Tooltip("Save selected note"));
         deleteBtn.tooltipProperty().set(new Tooltip("Delete selected note"));
         settingBtn.tooltipProperty().set(new Tooltip("Open settings"));
         closeBtn.tooltipProperty().set(new Tooltip("Exit"));
 
-
-        rootItem.setExpanded(true);
+        //Setting the root of the notes tree
         tree.setRoot(rootItem);
-        tree.refresh();
 
-        if(notesList.loadNotes()){
-            for (Note note: notesList) {
+        //try to Load Notes from the notes.ser file path
+        //If notes file is found and loaded return true, and populate the tree.
+        if (notesList.loadNotes()) {
+            for (Note note : notesList) {
                 rootItem.getChildren().add(new TreeItem<>(note));
             }
             tree.getSelectionModel().select(Config.getLastSelectedNote());
             tree.refresh();
         }
 
+        //If no note is selected disable the note panel.
         if (tree.getSelectionModel().isEmpty()) {
             note_panel.setDisable(true);
         } else {
@@ -85,8 +92,9 @@ public class Controller implements Initializable {
             note_panel.setDisable(false);
         }
 
+        //New button listener
         newBtn.setOnAction(event -> {
-            if(!tree.getSelectionModel().isEmpty()) {
+            if (!tree.getSelectionModel().isEmpty()) {
                 saveBtn.fire();
             }
             notesList.newNote("New Note", "");
@@ -97,13 +105,14 @@ public class Controller implements Initializable {
             Log.i(logID, "\n" + notesList.toString());
         });
 
+        //Save button listener
         saveBtn.setOnAction(event -> {
             if (rootItem.getChildren().size() == 0) {
                 Log.w(logID, "Hey the tree is empty!!");
                 setNotification("No Note Selected !!!");
                 return;
             }
-            if(!tree.getSelectionModel().isEmpty()) {
+            if (!tree.getSelectionModel().isEmpty()) {
                 String newTitle = title.getText();
                 String newContent = content.getText();
                 notesList.getNote(tree.getSelectionModel().getSelectedIndex()).updateNote(newTitle, newContent, Date.from(Instant.now()));
@@ -115,13 +124,14 @@ public class Controller implements Initializable {
             }
         });
 
+        //Delete button listener
         deleteBtn.setOnAction(event -> {
             if (rootItem.getChildren().size() == 0) {
                 Log.w(logID, "Hey the tree is empty!!");
                 setNotification("No Note Selected!");
                 return;
             }
-            if(!tree.getSelectionModel().isEmpty()) {
+            if (!tree.getSelectionModel().isEmpty()) {
                 int index = tree.getSelectionModel().getSelectedIndex();
                 notesList.deleteNote(index);
                 rootItem.getChildren().remove(index);
@@ -140,21 +150,32 @@ public class Controller implements Initializable {
             tree.refresh();
         });
 
+        //Setting button listener
         settingBtn.setOnAction(event -> {
             if (settingStage != null) {
                 settingStage.requestFocus();
                 return;
             }
-
             try {
                 Parent root;
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("res/setting.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("res/setting_" + Config.getLanguage() + ".fxml"));
                 root = loader.load();
+                root.getStylesheets().clear();
+                root.getStylesheets().add(getClass().getResource("styles/setting_" + Config.getTheme().toLowerCase() + ".css").toString());
                 settingStage = new Stage();
                 settingStage.setTitle("Setting");
                 settingStage.initStyle(StageStyle.UNDECORATED);
                 settingStage.setScene(new Scene(root));
                 settingStage.show();
+
+                root.setOnMousePressed(ev -> {
+                    xLoc = ev.getSceneX();
+                    yLoc = ev.getSceneY();
+                });
+                root.setOnMouseDragged(ev -> {
+                    settingStage.setX(ev.getScreenX() - xLoc);
+                    settingStage.setY(ev.getScreenY() - yLoc);
+                });
             } catch (IOException e) {
                 Log.e(logID, e.getMessage());
                 e.printStackTrace();
@@ -162,15 +183,22 @@ public class Controller implements Initializable {
 
         });
 
-
+        //Close button listener
         closeBtn.setOnAction(event -> {
             saveBtn.fire();
             Platform.exit();
         });
 
+        //Selected note change listener.
         tree.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             Log.v(logID, "Controller.changed");
+            if (oldValue != null) {
+                System.out.println("Old Value : " + oldValue.getValue());
+            }
+
+
             if (newValue != null) {
+                System.out.println("New Value : " + newValue.getValue());
                 updateDetails();
                 Config.setLastSelectedNote(tree.getSelectionModel().getSelectedIndex());
             }
@@ -179,6 +207,7 @@ public class Controller implements Initializable {
         });
     }
 
+    //This method used to update the note panel from the selected note in the tree panel.
     private void updateDetails() {
         Note note = tree.getSelectionModel().getSelectedItem().getValue();
 
@@ -193,10 +222,10 @@ public class Controller implements Initializable {
         time_created.setText(time.format(note.getCreated()));
         date_updated.setText(date.format(note.getUpdated()));
         time_updated.setText(time.format(note.getUpdated()));
-
     }
 
-    private void setNotification(String message){
+    //This method is used to shoe a notification containing the passed string.
+    private void setNotification(String message) {
         notification.setText(message);
         fadeIn.setNode(notification_panel);
         fadeIn.setFromValue(0.00);
@@ -206,6 +235,4 @@ public class Controller implements Initializable {
         fadeIn.playFromStart();
         fadeIn.setOnFinished(value -> notification.setText(""));
     }
-
-
 }

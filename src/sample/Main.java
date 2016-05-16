@@ -16,15 +16,12 @@ public class Main extends Application {
     private double yLoc;
 
     public static void main(String[] args) {
+        Log.setState('i');
         Config.loadConfig();
         launch(args);
     }
 
     static void applyConfig() {
-
-        //Apply Language
-        //TODO
-
         stage.close();
         stage = new Stage();
         Main main = new Main();
@@ -36,8 +33,8 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        buildStage(primaryStage, "res/main_gui.fxml", ("styles/main_" + Config.getTheme().toLowerCase() + ".css"));
+    public void start(Stage primaryStage) throws Exception {
+        buildStage(primaryStage, "res/main_gui_" + Config.getLanguage() + ".fxml", ("styles/main_" + Config.getTheme().toLowerCase() + ".css"));
         stage = primaryStage;
         primaryStage.show();
     }

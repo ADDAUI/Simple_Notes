@@ -3,8 +3,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity"
-            minHeight="-Infinity" minWidth="-Infinity" prefHeight="364.0" prefWidth="230.0"
-            style="-fx-border-width: 2; -fx-border-color: lightgray;" xmlns="http://javafx.com/javafx/8"
+            minHeight="-Infinity" minWidth="-Infinity" prefHeight="376.0" prefWidth="230.0" styleClass="setting-anchor"
+            stylesheets="@../styles/setting_dark.css" xmlns="http://javafx.com/javafx/8"
             fx:controller="sample.SettingController">
     <children>
         <HBox alignment="CENTER_RIGHT" layoutX="456.0" layoutY="361.0" spacing="10.0" AnchorPane.bottomAnchor="10.0"
@@ -29,7 +29,8 @@
                                             mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Language"
                                             AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
                                     <items>
-                                        <RadioMenuItem fx:id="ar" mnemonicParsing="false" text="العربية">
+                                        <RadioMenuItem fx:id="ar" mnemonicParsing="false" styleClass="menu-item-test"
+                                                       text="العربية">
                                             <toggleGroup>
                                                 <ToggleGroup fx:id="language_tg"/>
                                             </toggleGroup>
@@ -72,28 +73,30 @@
                                 <TextField fx:id="timeFormat" layoutX="15.0" layoutY="185.0" prefHeight="25.0"
                                            prefWidth="200.0" promptText="hh:mm:ss aa" AnchorPane.leftAnchor="15.0"
                                            AnchorPane.rightAnchor="15.0"/>
-                                <Label fx:id="dfError" layoutX="91.0" layoutY="85.0" opacity="0.0" prefHeight="17.0"
-                                       prefWidth="112.0" textFill="RED" AnchorPane.rightAnchor="15.0"/>
-                                <Label fx:id="tfError" layoutX="98.0" layoutY="155.0" opacity="0.0" prefHeight="17.0"
-                                       prefWidth="116.0" textFill="RED" AnchorPane.rightAnchor="15.0"/>
+                                <Label id="test" fx:id="dfError" layoutX="53.0" layoutY="138.0" opacity="0.0"
+                                       prefHeight="17.0" prefWidth="149.0" style="-fx-text-fill: red;"
+                                       styleClass="error-label" textFill="RED" AnchorPane.rightAnchor="15.0"/>
+                                <Label fx:id="tfError" layoutX="54.0" layoutY="213.0" opacity="0.0" prefHeight="17.0"
+                                       prefWidth="149.0" style="-fx-text-fill: red;" styleClass="error-label"
+                                       textFill="RED" AnchorPane.rightAnchor="15.0"/>
                                 <Hyperlink fx:id="link" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="84.0"
-                                           layoutY="240.0" text="https://goo.gl/lHwz01" AnchorPane.rightAnchor="10.0"/>
-                                <Label layoutX="67.0" layoutY="225.0" text="Formating Help, see link..."
+                                           layoutY="250.0" text="https://goo.gl/lHwz01" AnchorPane.rightAnchor="10.0"/>
+                                <Label layoutX="67.0" layoutY="235.0" text="Formating Help, see link..."
                                        AnchorPane.rightAnchor="15.0"/>
                                 <Slider fx:id="gmtSlider" blockIncrement="1.0" layoutX="39.0" layoutY="40.0"
                                         majorTickUnit="6.0" max="12.0" min="-12.0" minorTickCount="5" prefHeight="38.0"
                                         prefWidth="188.0" showTickLabels="true" showTickMarks="true" snapToTicks="true"
                                         AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0"/>
-                                <Label layoutX="15.0" layoutY="135.0" text="Date :"/>
-                                <Label fx:id="dfExample" layoutX="51.0" layoutY="135.0" text=" "/>
-                                <Label fx:id="tfExample" layoutX="51.0" layoutY="210.0" text=" "/>
-                                <Label layoutX="15.0" layoutY="210.0" text="Time :"/>
+                                <Label layoutX="15.0" layoutY="138.0" text="Date :"/>
+                                <Label fx:id="dfExample" layoutX="51.0" layoutY="138.0" text=" "/>
+                                <Label fx:id="tfExample" layoutX="51.0" layoutY="213.0" text=" "/>
+                                <Label layoutX="15.0" layoutY="213.0" text="Time :"/>
                             </children>
                         </AnchorPane>
                     </content>
                 </Tab>
             </tabs>
         </TabPane>
-        <Label layoutX="96.0" layoutY="3.0" text="Setting"/>
+        <Label layoutX="96.0" layoutY="5.0" text="Setting"/>
     </children>
 </AnchorPane>

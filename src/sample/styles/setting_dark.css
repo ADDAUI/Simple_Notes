@@ -1,0 +1,91 @@
+.setting-anchor {
+        -fx-background-color : #424242;
+        -fx-border-width : 2 ;
+        -fx-border-color : #323232;
+}
+
+.setting-anchor .label .text    {
+    -fx-fill : #FFFFFF;
+}
+
+
+.tab-pane   {
+    -fx-background-color : #313131;
+}
+
+.tab-pane .tab-header-area {
+    -fx-padding: 0.416667em 0.166667em 0.0em 0.0em;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color : #424242;
+}
+
+.tab   {
+    -fx-background-color:#888888;     
+	-fx-font: 1em "Arial Bold";
+    -fx-content-display: CENTER;
+    -fx-alignment: CENTER;
+    -fx-background-insets: 0 1 0 1,0,0;
+}
+
+.tab .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: #E0E0E0;
+    -fx-font-size: 12px;
+}
+
+.tab:hover   {
+    -fx-background-color:#AAAAAA;     
+}
+
+
+.tab:selected   {
+    -fx-background-color:#313131;
+}
+
+.tab:selected .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+}
+
+.menu-button    {
+    -fx-background-color: #989898 ;
+}
+
+.menu-button .label .text{
+    -fx-fill: #000000;
+}
+
+.context-menu {
+    -fx-background-color: #AAAAAA;
+    -fx-background-radius: 0 0 6 6, 0 0 5 5, 0 0 4 4;
+}
+
+.text-field {
+        -fx-background-insets: 0, 1;
+        -fx-background-radius: 3, 2;
+        -fx-text-box-border: #323232 ;
+        -fx-control-inner-background: #989898 ;
+        -fx-focus-color: #000000 ;
+        -fx-faint-focus-color: #202020 ;
+}
+
+.button {
+    -fx-background-color:#888888;  
+    -fx-text-fill: #FFFFFF;   
+	-fx-font: 1em "Arial Bold";
+    -fx-content-display: CENTER;
+    -fx-alignment: CENTER;
+    -fx-background-insets: 0px 0px -1px 0px, 0px, 1px, 2px;
+
+}
+
+.button:hover {
+    -fx-background-color:#AAAAAA;     
+}
+
+.button:pressed {
+    -fx-background-color:#EEEEEE;     
+}

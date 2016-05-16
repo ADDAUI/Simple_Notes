@@ -8,7 +8,7 @@ import java.util.Date;
  * Created by ADDAUI on 5/12/2016.
  * This class contain all information needed for a note object.
  */
-public class Note implements Serializable{
+public class Note implements Serializable {
 
     static final long serialVersionUID = 1L;
 
@@ -17,13 +17,13 @@ public class Note implements Serializable{
     private Date created;
     private Date updated;
 
-    public Note(String title,String content) {
+    public Note(String title, String content) {
         this.title = title;
         this.content = content;
         this.updated = this.created = Date.from(Instant.now());
     }
 
-    boolean updateNote(String title,String content, Date updated){
+    boolean updateNote(String title, String content, Date updated) {
         this.title = title;
         this.content = content;
         this.updated = updated;

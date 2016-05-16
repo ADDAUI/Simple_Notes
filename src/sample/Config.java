@@ -13,7 +13,7 @@ class Config implements Serializable {
 
     //LogID and sample.Log class are used only for logging purposes.
     private static final String logID = "Dev_ADDAUI";
-
+    //Settings are initialized to the default setting.
     private static String Language = "en";
     private static String DateFormat = "MMM dd, yyyy";
     private static String TimeFormat = "hh:mm:ss aa";

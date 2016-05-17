@@ -1,4 +1,4 @@
-package sample;
+package simple_notes;
 
 import java.io.*;
 import java.util.LinkedList;
@@ -33,7 +33,7 @@ class NotesList extends LinkedList<Note> {
 
     void saveNotes() {
         try {
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("src/sample/res/notes.ser"));
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("src/simple_notes/res/notes.ser"));
             oos.writeObject(this);
             oos.flush();
             oos.close();
@@ -47,7 +47,7 @@ class NotesList extends LinkedList<Note> {
 
     boolean loadNotes() {
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src/sample/res/notes.ser"));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src/simple_notes/res/notes.ser"));
             this.addAll((NotesList) ois.readObject());
             ois.close();
             Log.i(logID, "Note Loaded from file");

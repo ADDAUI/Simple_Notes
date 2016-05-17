@@ -1,4 +1,4 @@
-package sample;
+package simple_notes;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -77,7 +77,7 @@ public class SettingController implements Initializable {
         for (MenuItem menuItem : language.getItems()) {
             menuItem.setOnAction(value -> {
                 language.setText(menuItem.getText());
-                System.out.println(menuItem.getId() + " selected");
+                Log.i(logID, menuItem.getId() + " selected");
             });
         }
 
@@ -85,14 +85,14 @@ public class SettingController implements Initializable {
         for (MenuItem menuItem : theme.getItems()) {
             menuItem.setOnAction(value -> {
                 theme.setText(menuItem.getText());
-                System.out.println(menuItem.getId() + " selected");
+                Log.i(logID, menuItem.getId() + " selected");
             });
         }
 
         //GMT Slider Listener
         gmtSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             int value = Math.round(newValue.floatValue());
-            System.out.printf("Old Value: %.2f , New Value: %d\n", oldValue.floatValue(), value);
+            Log.d(logID, String.format("Old Value: %.2f , New Value: %d\n", oldValue.floatValue(), value));
             gmtOffset.setText((value == 0) ? "GMT" : (value > 0) ? "GMT+" + value : "GMT" + value);
         });
 
@@ -117,7 +117,7 @@ public class SettingController implements Initializable {
             } catch (IllegalArgumentException e) {
                 dateOK = false;
                 dfExample.setText("");
-                dfError.setText("Wrong Date Format!!");
+                dfError.setText(Config.lang.getString("dformat_error"));
                 dfError.setOpacity(1.00);
             }
         });
@@ -143,7 +143,7 @@ public class SettingController implements Initializable {
             } catch (IllegalArgumentException e) {
                 timeOK = false;
                 tfExample.setText("");
-                tfError.setText("Wrong Time Format!!");
+                tfError.setText(Config.lang.getString("tformat_error"));
                 tfError.setOpacity(1.00);
             }
         });

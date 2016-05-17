@@ -1,4 +1,4 @@
-package sample;
+package simple_notes;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,10 +7,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 public class Main extends Application {
 
+    //stage is static to make sure it have only one instance(class variable)
     private static Stage stage = null;
-
     //xLoc, yLoc are used to drag the window.
     private double xLoc;
     private double yLoc;
@@ -40,6 +43,8 @@ public class Main extends Application {
     }
 
     private void buildStage(Stage primaryStage, String fxml, String css) throws Exception {
+        Config.lang = ResourceBundle.getBundle("simple_notes/res/lang", new Locale(Config.getLanguage()));
+
         Parent root = FXMLLoader.load(getClass().getResource(fxml));
         primaryStage.setTitle("Simple Notes");
         primaryStage.initStyle(StageStyle.UNDECORATED);

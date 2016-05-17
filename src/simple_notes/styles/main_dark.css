@@ -26,6 +26,10 @@
     -fx-background-color:#EEEEEE;     
 }
 
+.context-menu {
+    -fx-background-color: #232323;
+    -fx-background-radius: 6, 5, 4;
+}
 
 /*Split Panel Style */
 .split-pane {

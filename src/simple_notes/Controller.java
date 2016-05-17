@@ -1,4 +1,4 @@
-package sample;
+package simple_notes;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
@@ -36,23 +36,36 @@ public class Controller implements Initializable {
     //Defining Main GUI Elements
     @FXML
     AnchorPane mainPanel;
-    @FXML Label notification;
-    @FXML TreeView<Note> tree;
-    @FXML Button saveBtn;
-    @FXML Button newBtn;
-    @FXML Button deleteBtn;
+    @FXML
+    Label notification;
+    @FXML
+    TreeView<Note> tree;
+    @FXML
+    Button saveBtn;
+    @FXML
+    Button newBtn;
+    @FXML
+    Button deleteBtn;
     @FXML
     Button settingBtn;
     @FXML
     Button closeBtn;
-    @FXML TextField title;
-    @FXML TextArea content;
-    @FXML Label date_created;
-    @FXML Label time_created;
-    @FXML Label date_updated;
-    @FXML Label time_updated;
-    @FXML AnchorPane note_panel;
-    @FXML HBox notification_panel;
+    @FXML
+    TextField title;
+    @FXML
+    TextArea content;
+    @FXML
+    Label date_created;
+    @FXML
+    Label time_created;
+    @FXML
+    Label date_updated;
+    @FXML
+    Label time_updated;
+    @FXML
+    AnchorPane note_panel;
+    @FXML
+    HBox notification_panel;
     //xLoc, yLoc are used to drag the window.
     private double xLoc;
     private double yLoc;
@@ -65,11 +78,11 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //Add tooltips to the buttons.
-        newBtn.tooltipProperty().set(new Tooltip("Add a new note"));
-        saveBtn.tooltipProperty().set(new Tooltip("Save selected note"));
-        deleteBtn.tooltipProperty().set(new Tooltip("Delete selected note"));
-        settingBtn.tooltipProperty().set(new Tooltip("Open settings"));
-        closeBtn.tooltipProperty().set(new Tooltip("Exit"));
+        newBtn.tooltipProperty().set(new Tooltip(Config.lang.getString("tt_new")));
+        saveBtn.tooltipProperty().set(new Tooltip(Config.lang.getString("tt_save")));
+        deleteBtn.tooltipProperty().set(new Tooltip(Config.lang.getString("tt_delete")));
+        settingBtn.tooltipProperty().set(new Tooltip(Config.lang.getString("tt_setting")));
+        closeBtn.tooltipProperty().set(new Tooltip(Config.lang.getString("tt_close")));
 
         //Setting the root of the notes tree
         tree.setRoot(rootItem);
@@ -97,11 +110,11 @@ public class Controller implements Initializable {
             if (!tree.getSelectionModel().isEmpty()) {
                 saveBtn.fire();
             }
-            notesList.newNote("New Note", "");
+            notesList.newNote(Config.lang.getString("new_note"), "");
             TreeItem<Note> item = new TreeItem<>(notesList.getNote(notesList.getSize() - 1));
             rootItem.getChildren().add(item);
             tree.getSelectionModel().select(item);
-            setNotification("New Note Created");
+            setNotification(Config.lang.getString("notification_created"));
             Log.i(logID, "\n" + notesList.toString());
         });
 
@@ -109,7 +122,7 @@ public class Controller implements Initializable {
         saveBtn.setOnAction(event -> {
             if (rootItem.getChildren().size() == 0) {
                 Log.w(logID, "Hey the tree is empty!!");
-                setNotification("No Note Selected !!!");
+                setNotification(Config.lang.getString("notification_none_selected"));
                 return;
             }
             if (!tree.getSelectionModel().isEmpty()) {
@@ -120,7 +133,7 @@ public class Controller implements Initializable {
                 notesList.saveNotes();
                 Config.saveConfig();
                 tree.refresh();
-                setNotification("Note Saved");
+                setNotification(Config.lang.getString("notification_saved"));
             }
         });
 
@@ -128,14 +141,14 @@ public class Controller implements Initializable {
         deleteBtn.setOnAction(event -> {
             if (rootItem.getChildren().size() == 0) {
                 Log.w(logID, "Hey the tree is empty!!");
-                setNotification("No Note Selected!");
+                setNotification(Config.lang.getString("notification_none_selected"));
                 return;
             }
             if (!tree.getSelectionModel().isEmpty()) {
                 int index = tree.getSelectionModel().getSelectedIndex();
                 notesList.deleteNote(index);
                 rootItem.getChildren().remove(index);
-                setNotification("Note Deleted");
+                setNotification(Config.lang.getString("notification_deleted"));
                 notesList.saveNotes();
             }
             if (rootItem.getChildren().size() == 0) {
@@ -193,12 +206,12 @@ public class Controller implements Initializable {
         tree.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             Log.v(logID, "Controller.changed");
             if (oldValue != null) {
-                System.out.println("Old Value : " + oldValue.getValue());
+                Log.d(logID, "Old Value : " + oldValue.getValue());
             }
 
 
             if (newValue != null) {
-                System.out.println("New Value : " + newValue.getValue());
+                Log.d(logID, "New Value : " + newValue.getValue());
                 updateDetails();
                 Config.setLastSelectedNote(tree.getSelectionModel().getSelectedIndex());
             }

@@ -8,13 +8,14 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mainPanel" maxHeight="-Infinity" maxWidth="-Infinity"
             minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="600.0"
             prefWidth="800.0" styleClass="top" stylesheets="@../styles/main_dark.css" xmlns="http://javafx.com/javafx/8"
-            fx:controller="sample.Controller">
+            fx:controller="simple_notes.Controller">
     <children>
-        <SplitPane dividerPositions="0.265" layoutX="290.0" layoutY="50.0" minHeight="300.0" minWidth="570.0"
-                   prefHeight="550.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" SplitPane.resizableWithParent="false">
+        <SplitPane dividerPositions="0.2506297229219144" layoutX="290.0" layoutY="50.0" minHeight="300.0"
+                   minWidth="570.0" prefHeight="550.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0"
+                   AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0"
+                   SplitPane.resizableWithParent="false">
             <items>
-                <AnchorPane maxWidth="290.0" minHeight="300.0" minWidth="150.0" prefHeight="160.0" prefWidth="100.0"
+                <AnchorPane maxWidth="220.0" minHeight="300.0" minWidth="150.0" prefHeight="160.0" prefWidth="100.0"
                             SplitPane.resizableWithParent="false">
                     <children>
                         <TreeView fx:id="tree" layoutY="173.0" prefHeight="598.0" prefWidth="197.0" showRoot="false"
@@ -34,8 +35,8 @@
                                 <AnchorPane maxHeight="57.0" minHeight="57.0" minWidth="490.0" opacity="0.99"
                                             prefHeight="100.0" prefWidth="160.0" styleClass="standardDetails">
                                     <children>
-                                        <HBox alignment="CENTER_LEFT" layoutX="47.0" layoutY="2.0" prefHeight="25.0"
-                                              prefWidth="532.0" spacing="5.0" AnchorPane.leftAnchor="47.0"
+                                        <HBox alignment="CENTER_LEFT" layoutX="14.0" layoutY="2.0" prefHeight="30.0"
+                                              prefWidth="551.0" spacing="5.0" AnchorPane.leftAnchor="14.0"
                                               AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="2.0">
                                             <children>
                                                 <Label layoutX="47.0" layoutY="6.0" minWidth="-Infinity"

@@ -1,9 +1,10 @@
-package sample;
+package simple_notes;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.Serializable;
 import java.util.Properties;
+import java.util.ResourceBundle;
 
 /**
  * Created by ADDAUI on 5/14/2016.
@@ -13,6 +14,7 @@ class Config implements Serializable {
 
     //LogID and sample.Log class are used only for logging purposes.
     private static final String logID = "Dev_ADDAUI";
+    public static ResourceBundle lang;
     //Settings are initialized to the default setting.
     private static String Language = "en";
     private static String DateFormat = "MMM dd, yyyy";
@@ -72,7 +74,7 @@ class Config implements Serializable {
 
     static void saveConfig() {
         try {
-            String propFilePath = "src/sample/res/config.properties";
+            String propFilePath = "src/simple_notes/res/config.properties";
             FileInputStream in = new FileInputStream(propFilePath);
             Properties props = new Properties();
             props.load(in);
@@ -94,9 +96,9 @@ class Config implements Serializable {
     }
 
     static boolean loadConfig() {
-
         try {
-            String propFilePath = "src/sample/res/config.properties";
+
+            String propFilePath = "src/simple_notes/res/config.properties";
             FileInputStream in = new FileInputStream(propFilePath);
             Properties props = new Properties();
             props.load(in);

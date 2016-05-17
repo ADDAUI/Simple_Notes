@@ -1,4 +1,4 @@
-package sample;
+package simple_notes;
 
 import java.io.Serializable;
 import java.time.Instant;

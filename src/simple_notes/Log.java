@@ -1,4 +1,4 @@
-package sample;
+package simple_notes;
 
 /**
  * Created by ADDAUI on 5/13/2016.

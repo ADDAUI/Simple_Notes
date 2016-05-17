@@ -5,7 +5,7 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity"
             minHeight="-Infinity" minWidth="-Infinity" prefHeight="376.0" prefWidth="230.0" styleClass="setting-anchor"
             stylesheets="@../styles/setting_dark.css" xmlns="http://javafx.com/javafx/8"
-            fx:controller="sample.SettingController">
+            fx:controller="simple_notes.SettingController">
     <children>
         <HBox alignment="CENTER_RIGHT" layoutX="456.0" layoutY="361.0" spacing="10.0" AnchorPane.bottomAnchor="10.0"
               AnchorPane.leftAnchor="86.0" AnchorPane.rightAnchor="14.0">

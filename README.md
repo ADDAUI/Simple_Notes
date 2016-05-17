@@ -11,10 +11,6 @@ Language: Java
 
 Libraries: JavaFX [GUI]
 
-#Next Update
-
-- Language switching.
-
 #Credits
 
 Programmer: Audai Al-Fandi (me).

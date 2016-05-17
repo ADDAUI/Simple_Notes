@@ -6,7 +6,7 @@ package simple_notes;
  */
 class Log {
 
-    private static char state = 'v';
+    private static char state = Config.getLogLevel();
 
     static void setState(char newState) {
         state = newState;
@@ -14,25 +14,25 @@ class Log {
 
     static void v(String tag, String verbose) {
         if (state == 'v')
-            System.out.println(tag + " :\t" + verbose);
+            System.out.println(tag + ", verbose :\t" + verbose);
     }
 
     static void i(String tag, String info) {
         if (state == 'v' || state == 'i')
-            System.out.println(tag + " :\t" + info);
+            System.out.println(tag + ", info :\t" + info);
     }
 
     static void d(String tag, String debug) {
         if (state == 'v' || state == 'i' || state == 'd')
-            System.out.println(tag + " :\t" + debug);
+            System.out.println(tag + ", debug :\t" + debug);
     }
 
     static void w(String tag, String warning) {
         if (state == 'v' || state == 'i' || state == 'd' || state == 'w')
-            System.err.println(tag + " :\t" + warning);
+            System.err.println(tag + ", warning :\t" + warning);
     }
 
     static void e(String tag, String error) {
-        System.err.println(tag + " :\t" + error);
+        System.err.println(tag + ", error :\t" + error);
     }
 }

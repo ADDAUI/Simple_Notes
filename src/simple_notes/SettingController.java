@@ -26,6 +26,8 @@ public class SettingController implements Initializable {
     @FXML
     AnchorPane anchor;
     @FXML
+    TabPane settingTabs;
+    @FXML
     MenuButton language;
     @FXML
     MenuButton theme;
@@ -48,9 +50,14 @@ public class SettingController implements Initializable {
     @FXML
     Hyperlink link;
     @FXML
+    MenuButton logger;
+    @FXML
+    CheckBox saveOnExit;
+    @FXML
     Button cancelBtn;
     @FXML
     Button okButton;
+
     //format OK
     private boolean dateOK = true;
     private boolean timeOK = true;
@@ -68,12 +75,25 @@ public class SettingController implements Initializable {
 
         //Ok Button Action.
         okButton.setOnAction(event -> {
+            if (!timeOK || !dateOK) {
+                settingTabs.getSelectionModel().select(1);
+                return;
+            }
             saveConfig();
             cancelBtn.fire();
             Main.applyConfig();
         });
 
-        //Language Menu Listener.
+        //Log Level Menu Items Listener.
+        for (MenuItem menuItem : logger.getItems()) {
+            menuItem.setOnAction(value -> {
+                logger.setText(menuItem.getText());
+                Log.i(logID, menuItem.getId() + " selected");
+            });
+        }
+
+
+        //Language Menu Items Listener.
         for (MenuItem menuItem : language.getItems()) {
             menuItem.setOnAction(value -> {
                 language.setText(menuItem.getText());
@@ -81,7 +101,7 @@ public class SettingController implements Initializable {
             });
         }
 
-        //Theme Menu Listener.
+        //Theme Menu Items Listener.
         for (MenuItem menuItem : theme.getItems()) {
             menuItem.setOnAction(value -> {
                 theme.setText(menuItem.getText());
@@ -89,14 +109,14 @@ public class SettingController implements Initializable {
             });
         }
 
-        //GMT Slider Listener
+        //GMT Slider .
         gmtSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             int value = Math.round(newValue.floatValue());
             Log.d(logID, String.format("Old Value: %.2f , New Value: %d\n", oldValue.floatValue(), value));
             gmtOffset.setText((value == 0) ? "GMT" : (value > 0) ? "GMT+" + value : "GMT" + value);
         });
 
-        //Date Format
+        //Date Format.
         dateFormat.textProperty().addListener(listener -> {
             Date date = Date.from(Instant.now());
             try {
@@ -111,18 +131,19 @@ public class SettingController implements Initializable {
                 }
                 dfError.setText("");
                 dfError.setOpacity(0.00);
-                System.out.println(df.format(date));
+                Log.v(logID, df.format(date));
                 dfExample.setText(df.format(date));
                 dateOK = true;
             } catch (IllegalArgumentException e) {
                 dateOK = false;
                 dfExample.setText("");
+                Log.w(logID, dateFormat.getText() + " is a wrong date format !!!");
                 dfError.setText(Config.lang.getString("dformat_error"));
                 dfError.setOpacity(1.00);
             }
         });
 
-        //Time Format
+        //Time Format.
         timeFormat.textProperty().addListener(listener -> {
             Date date = Date.from(Instant.now());
             try {
@@ -137,12 +158,13 @@ public class SettingController implements Initializable {
                 }
                 tfError.setText("");
                 tfError.setOpacity(0.00);
-                System.out.println(tf.format(date));
+                Log.v(logID, tf.format(date));
                 tfExample.setText(tf.format(date));
                 timeOK = true;
             } catch (IllegalArgumentException e) {
                 timeOK = false;
                 tfExample.setText("");
+                Log.w(logID, timeFormat.getText() + " is a wrong time format !!!");
                 tfError.setText(Config.lang.getString("tformat_error"));
                 tfError.setOpacity(1.00);
             }
@@ -163,32 +185,56 @@ public class SettingController implements Initializable {
 
         if (timeOK && dateOK) {
 
-            //Save Language
+            //Save Debug Level.
+            for (MenuItem menuItem : logger.getItems()) {
+                RadioMenuItem rmi = (RadioMenuItem) menuItem;
+                if (rmi.isSelected()) {
+                    Config.setLogLevel(rmi.getId().charAt(0));
+                    break;
+                }
+            }
+
+            //Save On Exit CheckBox
+            Config.setSaveOnExit(saveOnExit.isSelected());
+
+            //Save Language.
             if (language.getText().equals("English")) {
                 Config.setLanguage("en");
             } else {
                 Config.setLanguage("ar");
             }
-            //Save theme
+            //Save theme.
             if (theme.getText().equals("Light")) {
                 Config.setTheme("Light");
             } else {
                 Config.setTheme("Dark");
             }
 
-            //Save GMT offset
+            //Save GMT offset.
             Config.setGMTOffset(gmtOffset.getText());
-            //Save Date Format
+            //Save Date Format.
             Config.setDateFormat((dateFormat.getText().equals("")) ? dateFormat.getPromptText() : dateFormat.getText());
-            //Save Time Format
+            //Save Time Format.
             Config.setTimeFormat((timeFormat.getText().equals("")) ? timeFormat.getPromptText() : timeFormat.getText());
 
-            //Save Config to a File
+            //Save Config to a File.
             Config.saveConfig();
         }
     }
 
     private void loadConfig() {
+
+        //Load Log Level
+        for (MenuItem item : logger.getItems()) {
+            RadioMenuItem rmi = (RadioMenuItem) item;
+            if (Config.getLogLevel() == rmi.getId().charAt(0)) {
+                rmi.setSelected(true);
+                logger.setText(rmi.getText());
+            }
+        }
+
+        //Load SaveOnExit
+        saveOnExit.setSelected(Config.getSaveOnExit());
 
         //Load Language
         for (MenuItem item : language.getItems()) {

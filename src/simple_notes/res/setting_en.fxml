@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity"
-            minHeight="-Infinity" minWidth="-Infinity" prefHeight="376.0" prefWidth="230.0" styleClass="setting-anchor"
+            minHeight="-Infinity" minWidth="-Infinity" prefHeight="376.0" prefWidth="288.0" styleClass="setting-anchor"
             stylesheets="@../styles/setting_dark.css" xmlns="http://javafx.com/javafx/8"
             fx:controller="simple_notes.SettingController">
     <children>
@@ -16,9 +16,9 @@
                         mnemonicParsing="false" prefWidth="60.0" text="OK"/>
             </children>
         </HBox>
-        <TabPane layoutX="6.0" layoutY="22.0" prefHeight="283.0" prefWidth="222.0" tabClosingPolicy="UNAVAILABLE"
-                 AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0"
-                 AnchorPane.topAnchor="20.0">
+        <TabPane fx:id="settingTabs" layoutX="6.0" layoutY="22.0" prefHeight="283.0" prefWidth="222.0"
+                 tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="4.0"
+                 AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="20.0">
             <tabs>
                 <Tab text="Appearence">
                     <content>
@@ -58,7 +58,7 @@
                         </AnchorPane>
                     </content>
                 </Tab>
-                <Tab text="Components">
+                <Tab text="Date and Time">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
@@ -95,8 +95,40 @@
                         </AnchorPane>
                     </content>
                 </Tab>
+                <Tab text="Advanced">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <MenuButton fx:id="logger" layoutX="15.0" layoutY="40.0" mnemonicParsing="false"
+                                            prefHeight="25.0" text="Warning" AnchorPane.leftAnchor="15.0"
+                                            AnchorPane.rightAnchor="15.0">
+                                    <items>
+                                        <RadioMenuItem fx:id="v" mnemonicParsing="false" text="Verbose">
+                                            <toggleGroup>
+                                                <ToggleGroup fx:id="log_tg"/>
+                                            </toggleGroup>
+                                        </RadioMenuItem>
+                                        <RadioMenuItem fx:id="i" mnemonicParsing="false" text="Info"
+                                                       toggleGroup="$log_tg"/>
+                                        <RadioMenuItem fx:id="d" mnemonicParsing="false" text="Debug"
+                                                       toggleGroup="$log_tg"/>
+                                        <RadioMenuItem fx:id="w" mnemonicParsing="false" text="Warning"
+                                                       toggleGroup="$log_tg"/>
+                                        <RadioMenuItem fx:id="e" mnemonicParsing="false" text="Error"
+                                                       toggleGroup="$log_tg"/>
+                                    </items>
+                                </MenuButton>
+                                <Label fx:id="debug" layoutX="15.0" layoutY="15.0" text="Debug Level :"
+                                       AnchorPane.leftAnchor="15.0"/>
+                                <CheckBox fx:id="saveOnExit" layoutX="15.0" layoutY="85.0" mnemonicParsing="false"
+                                          style="-fx-text-fill: white;" text="Save On Exit"
+                                          AnchorPane.leftAnchor="15.0"/>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
             </tabs>
         </TabPane>
-        <Label layoutX="96.0" layoutY="5.0" text="Setting"/>
+        <Label layoutX="125.0" layoutY="6.0" text="Setting"/>
     </children>
 </AnchorPane>

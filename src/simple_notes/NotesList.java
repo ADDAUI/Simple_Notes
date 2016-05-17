@@ -3,6 +3,8 @@ package simple_notes;
 import java.io.*;
 import java.util.LinkedList;
 
+import static simple_notes.Main.fs;
+
 /**
  * Created by ADDAUI on 5/12/2016.
  * This Class is used to connect the TreeView with the Notes.
@@ -33,7 +35,7 @@ class NotesList extends LinkedList<Note> {
 
     void saveNotes() {
         try {
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("src/simple_notes/res/notes.ser"));
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(Config.getResPath() + fs + ("notes.ser")));
             oos.writeObject(this);
             oos.flush();
             oos.close();
@@ -47,11 +49,17 @@ class NotesList extends LinkedList<Note> {
 
     boolean loadNotes() {
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src/simple_notes/res/notes.ser"));
+            File configFile = new File(Config.getResPath() + fs + ("notes.ser"));
+            if (configFile.createNewFile()) {
+                System.out.println("notes.ser has been created !!!");
+                Config.saveConfig();
+            }
+
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Config.getResPath() + fs + ("notes.ser")));
             this.addAll((NotesList) ois.readObject());
             ois.close();
             Log.i(logID, "Note Loaded from file");
-            Log.d(logID, "Content are : \n" + this);
+            Log.v(logID, "Content are : \n" + this);
             return true;
         } catch (FileNotFoundException e) {
             Log.e(logID, "File not Found !!!, Creating a new one.");

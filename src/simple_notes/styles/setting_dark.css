@@ -72,6 +72,10 @@
         -fx-faint-focus-color: #202020 ;
 }
 
+.check-box  {
+    -fx-text-fill : #FFFFFF;
+}
+
 .button {
     -fx-background-color:#888888;  
     -fx-text-fill: #FFFFFF;   

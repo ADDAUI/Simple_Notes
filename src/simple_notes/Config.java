@@ -1,20 +1,22 @@
 package simple_notes;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.Serializable;
 import java.util.Properties;
 import java.util.ResourceBundle;
+
+import static simple_notes.Main.fs;
 
 /**
  * Created by ADDAUI on 5/14/2016.
  * This class store the Setting Configurations
  */
-class Config implements Serializable {
+class Config {
 
     //LogID and sample.Log class are used only for logging purposes.
     private static final String logID = "Dev_ADDAUI";
-    public static ResourceBundle lang;
+    static ResourceBundle lang;
     //Settings are initialized to the default setting.
     private static String Language = "en";
     private static String DateFormat = "MMM dd, yyyy";
@@ -22,7 +24,14 @@ class Config implements Serializable {
     private static String Theme = "Light";
     private static String GMTOffset = "GMT+3";
     private static int LastSelectedNote = -1;
+    private static char logLevel = 'w';
+    private static boolean saveOnExit = false;
+    private static String resPath = System.getProperty("user.home") + fs + "Simple Notes" + fs + "res";
 
+
+    static String getResPath() {
+        return resPath;
+    }
 
     static String getLanguage() {
         return Language;
@@ -72,15 +81,33 @@ class Config implements Serializable {
         LastSelectedNote = lastSelectedNote;
     }
 
+    static char getLogLevel() {
+        return logLevel;
+    }
+
+    static void setLogLevel(char logLevel) {
+        Config.logLevel = logLevel;
+    }
+
+    static boolean getSaveOnExit() {
+        return saveOnExit;
+    }
+
+    static void setSaveOnExit(boolean saveOnExit) {
+        Config.saveOnExit = saveOnExit;
+    }
+
     static void saveConfig() {
         try {
-            String propFilePath = "src/simple_notes/res/config.properties";
+            String propFilePath = getResPath() + fs + "config.properties";
             FileInputStream in = new FileInputStream(propFilePath);
             Properties props = new Properties();
             props.load(in);
             in.close();
 
             FileOutputStream out = new FileOutputStream(propFilePath);
+            props.setProperty("SaveOnExit", String.valueOf(getSaveOnExit()));
+            props.setProperty("LogLevel", String.valueOf(logLevel));
             props.setProperty("Language", Language);
             props.setProperty("DateFormat", DateFormat);
             props.setProperty("TimeFormat", TimeFormat);
@@ -97,23 +124,32 @@ class Config implements Serializable {
 
     static boolean loadConfig() {
         try {
+            File configFile = new File(getResPath() + fs + ("config.properties"));
+            if (configFile.createNewFile()) {
+                System.out.println("config.properties has been created !!!");
+                saveConfig();
+            }
 
-            String propFilePath = "src/simple_notes/res/config.properties";
+            String propFilePath = getResPath() + fs + "config.properties";
             FileInputStream in = new FileInputStream(propFilePath);
             Properties props = new Properties();
             props.load(in);
             in.close();
 
-            Config.Language = props.getProperty("Language");
-            Config.DateFormat = props.getProperty("DateFormat");
-            Config.TimeFormat = props.getProperty("TimeFormat");
-            Config.Theme = props.getProperty("Theme");
-            Config.GMTOffset = props.getProperty("GMTOffset");
-            Config.LastSelectedNote = Integer.valueOf(props.getProperty("LastSelectedNote"));
+            setLogLevel(props.getProperty("LogLevel").charAt(0));
+            Log.setState(getLogLevel());
+            setSaveOnExit(Boolean.valueOf(props.getProperty("SaveOnExit")));
+            setLanguage(props.getProperty("Language"));
+            setDateFormat(props.getProperty("DateFormat"));
+            setTimeFormat(props.getProperty("TimeFormat"));
+            setTheme(props.getProperty("Theme"));
+            setGMTOffset(props.getProperty("GMTOffset"));
+            setLastSelectedNote(Integer.valueOf(props.getProperty("LastSelectedNote")));
         } catch (Exception e) {
             Log.e(logID, e.getMessage());
         }
 
         return false;
     }
+
 }

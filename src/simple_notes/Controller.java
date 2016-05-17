@@ -25,10 +25,6 @@ import java.util.TimeZone;
 
 public class Controller implements Initializable {
 
-    //TODO add a Locale Dictionary and make as much of the strings as I can into the dictionary.
-    //TODO Link hide after clicking, help him stop drinking.
-    //TODO make notes save stuff when switched
-
     //LogID and sample.Log class are used only for logging purposes.
     private static final String logID = "Dev_ADDAUI";
     //Setting Stage
@@ -198,8 +194,24 @@ public class Controller implements Initializable {
 
         //Close button listener
         closeBtn.setOnAction(event -> {
-            saveBtn.fire();
+            if (Config.getSaveOnExit()) {
+                saveBtn.fire();
+            }
             Platform.exit();
+        });
+
+        //Note content and title Listener
+        content.textProperty().addListener(listener -> {
+            try {
+                String newContent = content.getText();
+                notesList.getNote(tree.getSelectionModel().getSelectedIndex()).setContent(newContent);
+            } catch (IndexOutOfBoundsException e) {/*nothing*/}
+        });
+        title.textProperty().addListener(listener -> {
+            try {
+                String newTitle = title.getText();
+                notesList.getNote(tree.getSelectionModel().getSelectedIndex()).setTitle(newTitle);
+            } catch (IndexOutOfBoundsException e) {/*nothing*/}
         });
 
         //Selected note change listener.
@@ -237,7 +249,7 @@ public class Controller implements Initializable {
         time_updated.setText(time.format(note.getUpdated()));
     }
 
-    //This method is used to shoe a notification containing the passed string.
+    //This method is used to show a notification containing the passed string.
     private void setNotification(String message) {
         notification.setText(message);
         fadeIn.setNode(notification_panel);

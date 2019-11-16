@@ -19,7 +19,7 @@ Programmer: Audai Al-Fandi (me).
 
 Icons:
         
-- Main icon : [https://www.iconfinder.com/icons/55901] By Christian Baroni [http://christianbaroni.deviantart.com].
+- [Main icon](https://www.iconfinder.com/icons/55901) By Christian Baroni [http://christianbaroni.deviantart.com].
 - Title icon : [https://thenounproject.com/term/note-pencil/396634] By icon 54 [https://icon54.com].
 - Notification icon : [https://thenounproject.com/term/bell/182491] By Martin Vanco [https://thenounproject.com/vancom].
 - New icon : [https://www.iconfinder.com/icons/103173] By Designmodo [http://designmodo.com].

@@ -1,8 +1,10 @@
+![](https://i.imgur.com/Pth5uK0.png)
 # Simple_Notes
 
 An app created with JavaFX GUI to write notes.
 it saves the notes to a sterialized file, and load saved notes when the program starts.
 
+![](https://i.imgur.com/zzePLlT.png)
 # Tools
 
 IDE: IntelliJ IDEA Community
